@@ -1,0 +1,561 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HEOS Modules</title>
+<meta name="description" content="HEOS – Higher Education Operating System: 4 Workspace, 24 Module, 1 định danh dùng chung.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f6f7fb; --surface:#ffffff; --surface-2:#eef1f6; --text:#0f172a; --muted:#526077; --line:#dfe4ec;
+  --hero:#0b1324; --hero-2:#16213a; --hero-text:#f1f5f9; --hero-muted:#9fb0c8;
+  --plat:#0369a1; --ops:#ea580c; --learn:#4f46e5; --life:#0d9488;
+  --plat-soft:#e0f0fa; --ops-soft:#fdeee4; --learn-soft:#ebeafd; --life-soft:#e1f4f2;
+  --shadow:0 1px 2px rgba(15,23,42,.05),0 8px 24px -12px rgba(15,23,42,.18);
+  --radius:14px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0a0f1c; --surface:#121a2b; --surface-2:#1a2438; --text:#e6ebf3; --muted:#93a1b8; --line:#253047;
+    --hero:#060a14; --hero-2:#121a2b;
+    --plat:#38a6e0; --ops:#fb8a4c; --learn:#8b85ff; --life:#2cc4b4;
+    --plat-soft:#0f2a3d; --ops-soft:#3a2010; --learn-soft:#221f4a; --life-soft:#0e302d;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px -12px rgba(0,0,0,.6);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0a0f1c; --surface:#121a2b; --surface-2:#1a2438; --text:#e6ebf3; --muted:#93a1b8; --line:#253047;
+  --hero:#060a14; --hero-2:#121a2b;
+  --plat:#38a6e0; --ops:#fb8a4c; --learn:#8b85ff; --life:#2cc4b4;
+  --plat-soft:#0f2a3d; --ops-soft:#3a2010; --learn-soft:#221f4a; --life-soft:#0e302d;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px -12px rgba(0,0,0,.6);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:"Be Vietnam Pro",system-ui,sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+@media (max-width:600px){.wrap{padding:0 16px}}
+
+/* Nav */
+nav.top{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--hero) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.06)}
+nav.top .wrap{display:flex;align-items:center;gap:20px;height:60px}
+.brand{font-weight:800;letter-spacing:.04em;color:var(--hero-text);text-decoration:none;font-size:18px}
+.brand span{color:var(--hero-muted);font-weight:500;font-size:13px;margin-left:8px;letter-spacing:0}
+nav.top ul{display:flex;gap:4px;list-style:none;margin:0 0 0 auto;padding:0}
+nav.top ul a{color:var(--hero-muted);text-decoration:none;font-size:14px;padding:8px 12px;border-radius:8px}
+nav.top ul a:hover{color:var(--hero-text);background:rgba(255,255,255,.07)}
+.theme-btn{background:transparent;border:1px solid rgba(255,255,255,.15);color:var(--hero-text);border-radius:8px;width:36px;height:36px;cursor:pointer;font-size:15px}
+@media (max-width:760px){nav.top ul{display:none}.theme-btn{margin-left:auto}}
+
+/* Hero */
+.hero{background:radial-gradient(1200px 500px at 85% -10%,rgba(79,70,229,.35),transparent 60%),radial-gradient(900px 400px at -10% 110%,rgba(13,148,136,.25),transparent 60%),var(--hero);color:var(--hero-text);padding:88px 0 72px}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--hero-muted)}
+.hero h1{font-size:clamp(56px,10vw,104px);line-height:1;margin:18px 0 12px;font-weight:800;letter-spacing:-.02em}
+.hero h2{font-size:clamp(20px,3vw,28px);margin:0 0 10px;font-weight:700}
+.hero p.lead{max-width:640px;color:#c8d3e3;font-size:17px;margin:16px 0 32px}
+.stats{display:flex;gap:36px;flex-wrap:wrap;margin-bottom:40px}
+.stat b{display:block;font-size:36px;font-weight:800;line-height:1.1}
+.stat small{color:var(--hero-muted);font-size:13px}
+.cta{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 20px;border-radius:10px;font-weight:600;font-size:15px;text-decoration:none;border:1px solid transparent}
+.btn.primary{background:#fff;color:#0b1324}
+.btn.ghost{border-color:rgba(255,255,255,.2);color:var(--hero-text)}
+.btn:hover{filter:brightness(.95)}
+
+.ws-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:56px}
+@media (max-width:900px){.ws-strip{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:480px){.ws-strip{grid-template-columns:1fr}}
+.ws-chip{background:var(--hero-2);border-radius:12px;padding:16px 18px;border-left:4px solid var(--c);text-decoration:none;display:block;transition:transform .15s}
+.ws-chip:hover{transform:translateY(-2px)}
+.ws-chip .n{font-size:28px;font-weight:800;color:var(--c);line-height:1}
+.ws-chip .t{font-weight:700;margin-top:8px}
+.ws-chip .s{color:var(--hero-muted);font-size:12.5px;font-family:"JetBrains Mono",monospace;margin-top:4px}
+
+/* Sections */
+section{padding:80px 0}
+.sec-head{max-width:720px;margin-bottom:36px}
+.sec-head .eyebrow{color:var(--muted)}
+.sec-head h3{font-size:clamp(28px,4vw,38px);margin:8px 0 10px;line-height:1.15;letter-spacing:-.01em}
+.sec-head p{color:var(--muted);margin:0;font-size:16px}
+
+/* Toolbar */
+.toolbar{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-bottom:28px}
+.tabs{display:flex;gap:6px;flex-wrap:wrap}
+.tab{border:1px solid var(--line);background:var(--surface);color:var(--text);padding:8px 14px;border-radius:999px;font:inherit;font-size:14px;font-weight:500;cursor:pointer;display:inline-flex;gap:8px;align-items:center}
+.tab .dot{width:8px;height:8px;border-radius:50%;background:var(--c,var(--muted))}
+.tab[aria-pressed="true"]{background:var(--text);color:var(--bg);border-color:var(--text)}
+.search{margin-left:auto;position:relative;flex:1;min-width:200px;max-width:320px}
+.search input{width:100%;font:inherit;font-size:14px;padding:9px 14px 9px 36px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--text)}
+.search input:focus{outline:2px solid var(--learn);outline-offset:1px}
+.search svg{position:absolute;left:11px;top:50%;transform:translateY(-50%);color:var(--muted)}
+@media (max-width:600px){.search{margin-left:0;max-width:none}}
+
+.ws-group{margin-bottom:48px}
+.ws-group[hidden]{display:none}
+.ws-title{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--line)}
+.ws-title .pill{background:var(--c);color:#fff;font-size:12px;font-weight:700;padding:4px 10px;border-radius:6px;letter-spacing:.03em}
+.ws-title h4{margin:0;font-size:22px}
+.ws-title span{color:var(--muted);font-size:14px}
+.ws-title code{margin-left:auto;font-family:"JetBrains Mono",monospace;font-size:13px;color:var(--muted)}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:16px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:20px;cursor:pointer;text-align:left;font:inherit;color:inherit;display:flex;flex-direction:column;gap:10px;box-shadow:var(--shadow);transition:transform .15s,border-color .15s;position:relative;overflow:hidden}
+.card::before{content:"";position:absolute;inset:0 0 auto 0;height:3px;background:var(--c)}
+.card:hover,.card:focus-visible{transform:translateY(-3px);border-color:var(--c);outline:none}
+.card-top{display:flex;align-items:center;gap:12px}
+.badge{width:48px;height:48px;border-radius:10px;background:var(--c);color:#fff;display:grid;place-items:center;font-weight:800;font-size:14px;letter-spacing:.02em;flex-shrink:0}
+.card h5{margin:0;font-size:16px;line-height:1.3}
+.card .en{color:var(--muted);font-size:12.5px}
+.card p{margin:0;color:var(--muted);font-size:14px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tag{background:var(--soft);color:var(--text);font-size:12px;padding:3px 8px;border-radius:6px}
+.card-foot{margin-top:auto;display:flex;justify-content:space-between;align-items:center;font-size:12.5px;color:var(--muted);padding-top:8px;border-top:1px dashed var(--line)}
+.card-foot b{color:var(--c)}
+.empty{color:var(--muted);text-align:center;padding:40px;border:1px dashed var(--line);border-radius:var(--radius)}
+
+/* Users */
+.alt{background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.users{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
+.user{border:1px solid var(--line);border-radius:12px;padding:18px;background:var(--bg)}
+.user h6{margin:0 0 6px;font-size:15px}
+.user p{margin:0 0 10px;color:var(--muted);font-size:13.5px}
+.user .ws{display:flex;gap:6px;flex-wrap:wrap}
+.user .ws span{font-size:11.5px;font-weight:600;padding:2px 8px;border-radius:6px;background:var(--soft);color:var(--c)}
+
+/* Principles */
+.principles{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+.pr{display:flex;gap:14px;padding:18px;border-radius:12px;background:var(--surface);border:1px solid var(--line)}
+.pr .num{font-family:"JetBrains Mono",monospace;font-size:13px;color:var(--muted);min-width:22px}
+.pr h6{margin:0 0 4px;font-size:15px}
+.pr p{margin:0;font-size:13.5px;color:var(--muted)}
+
+/* Roadmap */
+.road{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;counter-reset:step}
+@media (max-width:1000px){.road{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:560px){.road{grid-template-columns:1fr}}
+.phase{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:18px;position:relative}
+.phase .k{font-size:12px;font-weight:700;color:var(--muted);letter-spacing:.08em}
+.phase h6{margin:6px 0 10px;font-size:15px}
+.phase .mods{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:10px}
+.phase .mods button{border:none;cursor:pointer;font:inherit;font-size:11.5px;font-weight:700;color:#fff;background:var(--c);padding:3px 7px;border-radius:5px}
+.phase p{margin:0;font-size:13px;color:var(--muted)}
+
+/* Tech */
+.tech{display:flex;flex-wrap:wrap;gap:10px}
+.tech span{border:1px solid var(--line);background:var(--surface);padding:8px 14px;border-radius:10px;font-size:14px}
+.tech span b{color:var(--muted);font-weight:500;margin-right:6px;font-size:12px;text-transform:uppercase;letter-spacing:.06em}
+
+footer{background:var(--hero);color:var(--hero-muted);padding:40px 0;font-size:14px}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+footer b{color:var(--hero-text)}
+
+/* Modal */
+dialog{border:none;border-radius:18px;padding:0;max-width:720px;width:calc(100% - 32px);background:var(--surface);color:var(--text);box-shadow:0 30px 80px -20px rgba(0,0,0,.5)}
+dialog::backdrop{background:rgba(6,10,20,.6);backdrop-filter:blur(3px)}
+.m-head{padding:24px 24px 20px;background:var(--soft);display:flex;gap:16px;align-items:flex-start;position:relative}
+.m-head .badge{width:60px;height:60px;font-size:17px}
+.m-head h3{margin:0 0 4px;font-size:22px;line-height:1.25;padding-right:36px}
+.m-head .meta{color:var(--muted);font-size:13px}
+.m-head .meta code{font-family:"JetBrains Mono",monospace;font-size:12px;background:var(--surface);padding:2px 6px;border-radius:5px}
+.close{position:absolute;top:16px;right:16px;width:34px;height:34px;border-radius:8px;border:1px solid var(--line);background:var(--surface);color:var(--text);cursor:pointer;font-size:18px;line-height:1}
+.m-body{padding:22px 24px 28px;max-height:65vh;overflow:auto}
+.m-body p.desc{margin:0 0 16px}
+.m-users{background:var(--surface-2);border-radius:10px;padding:12px 14px;font-size:14px;margin-bottom:20px}
+.m-body h4{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--c);margin:20px 0 10px}
+.feat{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.feat li{display:grid;grid-template-columns:180px 1fr;gap:12px;font-size:14px;padding:10px 12px;border-radius:8px;background:var(--surface-2)}
+.feat li b{font-weight:600}
+.feat li span{color:var(--muted)}
+@media (max-width:560px){.feat li{grid-template-columns:1fr;gap:2px}}
+.rel{display:flex;flex-wrap:wrap;gap:6px}
+.rel button{border:1px solid var(--line);background:var(--surface);color:var(--text);font:inherit;font-size:13px;padding:5px 10px;border-radius:8px;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+.rel button i{width:8px;height:8px;border-radius:50%;background:var(--c)}
+.rel button:hover{border-color:var(--c)}
+</style>
+</head>
+<body>
+
+<nav class="top">
+  <div class="wrap">
+    <a class="brand" href="#">HEOS<span>Higher Education OS</span></a>
+    <ul>
+      <li><a href="#modules">Module</a></li>
+      <li><a href="#users">Người dùng</a></li>
+      <li><a href="#principles">Nguyên tắc</a></li>
+      <li><a href="#roadmap">Lộ trình</a></li>
+    </ul>
+    <button class="theme-btn" id="themeBtn" aria-label="Đổi giao diện sáng/tối">◐</button>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">ERP + LMS · Microservices / DDD · v1.4</div>
+    <h1>HEOS</h1>
+    <h2>Higher Education Operating System</h2>
+    <p class="lead">Hệ điều hành Giáo dục Đại học: nền tảng hợp nhất ERP (quản trị nội bộ) và LMS (đào tạo – học tập). Mỗi Module là một ứng dụng độc lập nhưng dùng chung định danh, luồng phê duyệt, thông báo và design system — người dùng cảm nhận như một hệ thống duy nhất.</p>
+    <div class="stats">
+      <div class="stat"><b>4</b><small>Workspace</small></div>
+      <div class="stat"><b>24</b><small>Module</small></div>
+      <div class="stat"><b>8</b><small>Nhóm người dùng</small></div>
+      <div class="stat"><b>1</b><small>Định danh dùng chung</small></div>
+    </div>
+    <div class="cta">
+      <a class="btn primary" href="#modules">Khám phá 24 Module →</a>
+      <a class="btn ghost" href="#roadmap">Lộ trình triển khai</a>
+    </div>
+    <div class="ws-strip" id="wsStrip"></div>
+  </div>
+</header>
+
+<main>
+  <section id="modules">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="eyebrow">Phần II · Chi tiết Module</div>
+        <h3>24 Module, gom trong 4 Workspace</h3>
+        <p>Workspace là lớp điều hướng trên Menu Launcher; mỗi Module vẫn là một service, một repo, một schema riêng. Bấm vào một Module để xem tính năng và liên kết.</p>
+      </div>
+      <div class="toolbar">
+        <div class="tabs" id="tabs" role="group" aria-label="Lọc theo Workspace"></div>
+        <label class="search">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          <input id="q" type="search" placeholder="Tìm Module, tính năng…" aria-label="Tìm Module">
+        </label>
+      </div>
+      <div id="groups"></div>
+    </div>
+  </section>
+
+  <section id="users" class="alt">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="eyebrow">Phần I · Người dùng</div>
+        <h3>8 nhóm người dùng, một tài khoản cho mỗi người</h3>
+        <p>Nhóm người dùng chỉ là tập hợp vai trò gắn vào User gốc. Workspace hiện trên Launcher do vai trò quyết định, không do người dùng tự chọn.</p>
+      </div>
+      <div class="users" id="usersGrid"></div>
+    </div>
+  </section>
+
+  <section id="principles">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="eyebrow">Phần III · Design Principles</div>
+        <h3>14 nguyên tắc ràng buộc mọi Module</h3>
+        <p>Để đội phát triển Module nào cũng áp dụng giống nhau.</p>
+      </div>
+      <div class="principles" id="prGrid"></div>
+      <div class="sec-head" style="margin-top:56px;margin-bottom:18px">
+        <div class="eyebrow">Tech stack</div>
+      </div>
+      <div class="tech">
+        <span><b>Runtime</b>Python 3.12 · FastAPI</span>
+        <span><b>Gateway</b>Traefik v3</span>
+        <span><b>CSDL</b>PostgreSQL (schema / Module)</span>
+        <span><b>Event bus</b>RabbitMQ</span>
+        <span><b>Cache</b>Redis</span>
+        <span><b>Frontend</b>Next.js · Tailwind · shadcn/ui</span>
+        <span><b>Tệp</b>S3 / MinIO</span>
+        <span><b>Observability</b>OpenTelemetry · Prometheus · Grafana · Loki</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="roadmap" class="alt">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="eyebrow">Phần IV · Lộ trình</div>
+        <h3>6 giai đoạn triển khai đề xuất</h3>
+        <p>Đi từ nền tảng dùng chung, qua học vụ lõi, rồi đến tài chính, vận hành và các Module còn lại; BI làm sau cùng khi schema các Module đã ổn định.</p>
+      </div>
+      <div class="road" id="road"></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div><b>HEOS</b> · Tài liệu kiến trúc hệ thống v1.4 · Tháng 10/2026</div>
+    <div>Phạm vi v1: đầy đủ nghiệp vụ ERP và LMS, chưa bao gồm tính năng AI</div>
+  </div>
+</footer>
+
+<dialog id="modal" aria-labelledby="mTitle">
+  <div class="m-head" id="mHead">
+    <div class="badge" id="mBadge"></div>
+    <div>
+      <h3 id="mTitle"></h3>
+      <div class="meta" id="mMeta"></div>
+    </div>
+    <button class="close" id="mClose" aria-label="Đóng">×</button>
+  </div>
+  <div class="m-body" id="mBody"></div>
+</dialog>
+
+<script>
+const WS = {
+  plat:{name:"UniPlatform",sub:"Core System",path:"/platform",desc:"Nền tảng dùng chung: định danh, phê duyệt, thông báo, văn bản, báo cáo, công việc"},
+  ops:{name:"UniOps",sub:"ERP Back-office",path:"/ops",desc:"Quản trị nội bộ: tài chính, mua sắm, nhân sự, tài sản, cơ sở vật chất, dự án, nghiên cứu"},
+  learn:{name:"UniLearn",sub:"LMS Portal",path:"/learn",desc:"Toàn bộ vòng đời đào tạo: tuyển sinh → sinh viên → chương trình → khóa học → thi → văn bằng"},
+  life:{name:"UniLife",sub:"Student Hub",path:"/life",desc:"Đời sống sinh viên: thư viện, học bổng, cộng đồng, cựu sinh viên"}
+};
+const ALL = "__all__";
+const M = [
+ {c:"ADM",ws:"plat",n:"Quản trị hệ thống & Định danh",en:"Administration & Identity",links:23,
+  d:"Cửa ngõ của toàn bộ HEOS. Quản lý một định danh duy nhất (User gốc) cho mỗi người trong trường; mọi ứng dụng xác thực và kiểm tra quyền qua ADM. Giữ các danh mục dùng chung (đơn vị, năm học, học kỳ).",
+  u:"Quản trị viên hệ thống, phòng CNTT; gián tiếp là mọi người dùng HEOS.",
+  f:[["Định danh dùng chung","Hồ sơ STU, HRM, ALM mở rộng từ User gốc"],["Đăng nhập một lần (SSO)","OAuth2/OIDC, Microsoft 365 / Google Workspace, MFA"],["Phân quyền theo vai trò (RBAC)","Theo vai trò và đơn vị; quyết định Workspace hiện trên Launcher"],["Cơ cấu tổ chức và danh mục","Cây đơn vị, năm học, học kỳ, địa giới"],["Quản lý ứng dụng và tích hợp","Đăng ký Module, cấp API key cho hệ thống ngoài"],["Nhật ký kiểm toán","Ai làm gì, lúc nào, trên dữ liệu nào ở mọi Module"],["Tự phục vụ tài khoản","Đổi mật khẩu, khôi phục, quản lý thiết bị"]],
+  r:"*"},
+ {c:"WF",ws:"plat",n:"Phê duyệt điện tử",en:"Workflow & Approval",links:19,
+  d:"Trục xuyên suốt của HEOS: một engine phê duyệt dùng chung. Mọi nghiệp vụ cần ký duyệt gửi yêu cầu sang WF; WF điều phối người duyệt theo cấu hình rồi trả kết quả về Module gốc.",
+  u:"Cán bộ có thẩm quyền duyệt, Ban giám hiệu, người gửi đề nghị; quản trị viên cấu hình luồng.",
+  f:[["Thiết kế luồng kéo thả","Tuần tự, song song, rẽ nhánh theo điều kiện"],["Duyệt theo chức danh và đơn vị","Không gán cứng tên người duyệt"],["Ủy quyền và quá hạn","Ủy quyền khi vắng; quá hạn tự nhắc hoặc chuyển cấp trên"],["Duyệt trên di động và ký số","Ký số trực tiếp trong luồng"],["Hộp thư duyệt dùng chung","Ở thanh trên cùng của mọi Workspace"],["Mẫu luồng có sẵn","Mua sắm, chi tiêu, nghỉ phép, điểm, học bổng, đề tài, tốt nghiệp"],["Theo dõi và thống kê","Lịch sử, thời gian xử lý trung bình theo bước"]],
+  r:["PUR","FIN","HRM","CUR","EXM","DIP","SCH","RES","PRJ","TSK","NTF","DOC"]},
+ {c:"NTF",ws:"plat",n:"Thông báo",en:"Notification",links:23,
+  d:"Dịch vụ gửi thông báo dùng chung. Các Module chỉ cần phát sự kiện; NTF chọn mẫu, chọn kênh phù hợp với người nhận và gửi đi.",
+  u:"Mọi người dùng (người nhận); quản trị viên quản lý mẫu và kênh.",
+  f:[["Đa kênh","Email, SMS, push, Zalo OA, chuông trong ứng dụng"],["Mẫu thông báo","Có biến động, đa ngôn ngữ"],["Tùy chọn của người dùng","Thông báo bắt buộc (học phí, lịch thi) không tắt được"],["Gửi hàng loạt và hẹn giờ","Cho lớp, khoa, toàn trường; giới hạn tốc độ"],["Hàng đợi và gửi lại","Tự gửi lại khi lỗi; nhật ký đã gửi, đã đọc"],["Trung tâm thông báo","Một chuông chung cho 4 Workspace"]],
+  r:["ADM","WF","TSK"]},
+ {c:"DOC",ws:"plat",n:"Văn bản & Tài liệu",en:"Document Management",links:23,
+  d:"Kho văn bản và tài liệu tập trung: văn bản đến/đi theo nghiệp vụ văn thư, đồng thời lưu mọi tệp đính kèm của các Module khác. Có phiên bản, phân quyền và ký số.",
+  u:"Văn thư, cán bộ các phòng ban, Ban giám hiệu; gián tiếp là mọi Module.",
+  f:[["Văn bản đến và đi","Vào sổ, phân phối, trình ký, phát hành"],["Kho tài liệu tập trung","Lưu trên S3, có quản lý phiên bản"],["Phân quyền chi tiết","Theo người, vai trò, đơn vị"],["Ký số","Cá nhân và tổ chức"],["Tìm kiếm toàn văn","Kể cả trong PDF"],["Mẫu văn bản","Quyết định, tờ trình, công văn đúng thể thức"],["Lưu trữ theo thời hạn","Nhắc chuyển kho lưu trữ hoặc tiêu hủy"]],
+  r:["WF","ADS","PUR","RES","ADM"]},
+ {c:"BI",ws:"plat",n:"Báo cáo & Phân tích",en:"Business Intelligence",links:23,
+  d:"Trung tâm báo cáo toàn trường. Gom dữ liệu từ 23 Module vào kho riêng qua sự kiện (CQRS), gộp KPI vận hành với phân tích học tập trên cùng dashboard.",
+  u:"Ban giám hiệu, lãnh đạo đơn vị, phòng Khảo thí – Đảm bảo chất lượng, Kế hoạch – Tài chính.",
+  f:[["Dashboard Ban giám hiệu","Chỉ số quan trọng, gần thời gian thực"],["Phân tích học tập","Tỷ lệ đạt/trượt, nguy cơ bỏ học, phổ điểm"],["KPI vận hành","Thu chi, công nợ, nhân sự, tuyển sinh, sử dụng phòng"],["Báo cáo kiểm định và báo cáo Bộ","Theo bộ tiêu chí và mẫu định kỳ"],["Tự tạo báo cáo","Kéo thả, không cần nhờ CNTT"],["Xuất và lập lịch","Excel, PDF; gửi định kỳ qua email"]],
+  r:["ADM","STU","CRS","EXM","FIN","HRM","ADS"]},
+ {c:"TSK",ws:"plat",n:"Quản lý công việc",en:"Task Management",links:7,
+  d:"Lớp thực thi công việc dùng chung theo kiểu Kanban, tách biệt với PRJ. Việc giao thủ công hoặc sinh tự động từ WBS, bước duyệt WF — mỗi người có một danh sách việc duy nhất.",
+  u:"Mọi cán bộ, giảng viên; trưởng đơn vị theo dõi việc của đơn vị.",
+  f:[["Giao việc và theo dõi","Người thực hiện, ưu tiên, hạn chót, trạng thái"],["Nhiều cách xem","Kanban, danh sách, lịch"],["Việc định kỳ và checklist","Báo cáo tuần, kiểm kê tháng"],["Trao đổi trong việc","Bình luận, @, đính kèm"],["Danh sách việc của tôi","Gom việc từ WF, PRJ và việc được giao"],["Dashboard đơn vị","Khối lượng, tiến độ, việc quá hạn"]],
+  r:["PRJ","WF","HRM","NTF","BI"]},
+
+ {c:"FIN",ws:"ops",n:"Tài chính – Kế toán",en:"Finance & Accounting",links:19,
+  d:"Trung tâm tài chính – kế toán, mọi dòng tiền quy về FIN: học phí, lương, thanh toán nhà cung cấp, kinh phí đề tài, học bổng, khấu hao. Học phí là một luồng doanh thu trong FIN.",
+  u:"Phòng Kế hoạch – Tài chính, kế toán, thủ quỹ, Ban giám hiệu; sinh viên (đóng học phí).",
+  f:[["Sổ cái và kế toán tổng hợp","Theo chế độ kế toán đơn vị sự nghiệp"],["Ngân sách","Dự toán; kiểm soát chi không vượt"],["Học phí","Biểu phí theo tín chỉ; tự sinh hóa đơn khi đăng ký"],["Thu chi và thanh toán","Ngân hàng, cổng thanh toán, QR; đối soát tự động"],["Công nợ","Phải thu và phải trả"],["Hóa đơn điện tử","Hóa đơn, biên lai theo quy định"],["Báo cáo tài chính","Quyết toán, dòng tiền theo đơn vị và nguồn"]],
+  r:["CRS","ADS","SCH","HRM","PUR","FXA","PRJ","RES","LIB","ALM","WF"]},
+ {c:"PUR",ws:"ops",n:"Mua sắm",en:"Procurement",links:11,
+  d:"Quy trình mua sắm từ nhu cầu đến nghiệm thu: minh bạch, đúng ngân sách (kiểm tra với FIN) và đưa hàng vào đúng nơi (kho hoặc tài sản cố định).",
+  u:"Phòng Quản trị – Thiết bị, đơn vị có nhu cầu mua, phòng Tài chính, Ban giám hiệu.",
+  f:[["Đề nghị mua sắm","Kèm dự toán; tồn thấp tự sinh đề nghị"],["Kế hoạch mua sắm năm","Tổng hợp nhu cầu các đơn vị"],["Nhà cung cấp","Hồ sơ, năng lực, đánh giá"],["Báo giá và lựa chọn","Bảng so sánh, lý do chọn"],["Đơn hàng và hợp đồng","Tiến độ giao hàng"],["Nhận hàng và nghiệm thu","Từng phần hoặc toàn bộ"]],
+  r:["WF","FIN","INV","FXA","PRJ","RES","LIB","DOC"]},
+ {c:"HRM",ws:"ops",n:"Nhân sự",en:"Human Resources",links:14,
+  d:"Quản lý toàn bộ cán bộ, giảng viên, nhân viên. Giảng viên là một loại nhân sự có phân công giảng dạy, nên hợp đồng, lương, giờ giảng, giờ nghiên cứu đều nằm một nơi.",
+  u:"Phòng Tổ chức – Nhân sự, trưởng đơn vị, mọi cán bộ (tự phục vụ).",
+  f:[["Hồ sơ nhân sự","Lý lịch, học hàm, học vị, hợp đồng"],["Cơ cấu tổ chức","Chức danh, định biên, bổ nhiệm"],["Tuyển dụng","Đăng tin, ứng viên, phỏng vấn"],["Chấm công và nghỉ phép","Theo dõi quỹ phép"],["Tiền lương","Hệ số, phụ cấp, thuế, bảo hiểm"],["Giờ giảng và giờ nghiên cứu","Tổng hợp từ CRS và RES; tính vượt giờ"],["Đánh giá hiệu suất","Xếp loại, KPI cá nhân"],["Đào tạo nội bộ","Ghi nhận kết quả học trên LMS"]],
+  r:["ADM","CRS","RES","FIN","WF","DIP","TSK","FXA"]},
+ {c:"FXA",ws:"ops",n:"Tài sản cố định",en:"Fixed Assets",links:9,
+  d:"Vòng đời tài sản cố định từ ghi tăng, sử dụng, điều chuyển, bảo trì đến thanh lý. Mỗi tài sản có mã QR để kiểm kê bằng điện thoại; khấu hao tự động chuyển sang kế toán.",
+  u:"Phòng Quản trị – Thiết bị, kế toán tài sản, người được giao quản lý tài sản.",
+  f:[["Danh mục tài sản","Phân loại, giá trị, nguồn, vị trí"],["Mã QR / RFID","Tra cứu và kiểm kê"],["Ghi tăng","Tự tạo khi nhận hàng từ mua sắm"],["Khấu hao","Tự động theo quy định"],["Điều chuyển","Có lưu lịch sử"],["Bảo trì, sửa chữa","Lịch định kỳ, chi phí"],["Kiểm kê","Ứng dụng di động, đối chiếu chênh lệch"],["Thanh lý","Đề xuất, duyệt, ghi giảm"]],
+  r:["PUR","FIN","FAC","HRM","WF"]},
+ {c:"INV",ws:"ops",n:"Kho & Vật tư",en:"Inventory",links:8,
+  d:"Quản lý kho vật tư tiêu hao: văn phòng phẩm, vật tư thực hành, hóa chất. Biết chính xác tồn bao nhiêu, ai dùng bao nhiêu, tự cảnh báo khi sắp hết hoặc hết hạn.",
+  u:"Thủ kho, phòng Quản trị – Thiết bị, các đơn vị nhận vật tư.",
+  f:[["Danh mục vật tư","Đơn vị tính, quy cách, mức tồn tối thiểu"],["Nhập kho","Theo lô và hạn sử dụng"],["Xuất kho","Theo yêu cầu đã duyệt"],["Chuyển kho và điều chỉnh","Sau kiểm kê"],["Cảnh báo","Tồn thấp, sắp hết hạn"],["Báo cáo","Nhập – xuất – tồn"]],
+  r:["PUR","FIN","WF","CRS"]},
+ {c:"FAC",ws:"ops",n:"Phòng học & Cơ sở vật chất",en:"Facilities & Room Scheduling",links:10,
+  d:"Quản lý cơ sở, tòa nhà, phòng học, lab, hội trường và (tùy chọn) ký túc xá. Giải bài toán \"phòng nào trống, lúc nào\" cho thời khóa biểu, lịch thi, sự kiện.",
+  u:"Phòng Quản trị, phòng Đào tạo (xếp lịch), các đơn vị và câu lạc bộ (đặt phòng).",
+  f:[["Danh mục cơ sở vật chất","Sức chứa, loại phòng, thiết bị"],["Lịch sử dụng phòng","Tổng hợp TKB, lịch thi, sự kiện"],["Đặt phòng trực tuyến","Tự kiểm tra trùng lịch"],["Báo hỏng và sửa chữa","QR dán tại phòng"],["Ký túc xá (tùy chọn)","Phòng ở, xếp chỗ, thu phí"],["Hiệu suất sử dụng","Theo giờ, theo tòa nhà"]],
+  r:["CRS","EXM","COM","FXA","WF","FIN"]},
+ {c:"PRJ",ws:"ops",n:"Quản lý dự án",en:"Project Management",links:9,
+  d:"Quản lý dự án chính thức (xây dựng, chuyển đổi số, hợp tác quốc tế) có phạm vi, WBS, Gantt, ngân sách và rủi ro rõ ràng; đẩy hạng mục xuống TSK để thực thi.",
+  u:"Ban quản lý dự án, chủ nhiệm dự án, Ban giám hiệu.",
+  f:[["Khởi tạo dự án","Mục tiêu, phạm vi, chủ nhiệm"],["WBS và Gantt","Phụ thuộc, mốc quan trọng"],["Nguồn lực","Phân bổ nhân sự"],["Ngân sách và chi phí","Cảnh báo vượt dự toán"],["Rủi ro và thay đổi","Sổ rủi ro, yêu cầu thay đổi"],["Báo cáo tiến độ","Sức khỏe dự án"],["Nghiệm thu và đóng dự án","Bàn giao, tổng kết"]],
+  r:["TSK","FIN","HRM","PUR","WF","BI"]},
+ {c:"RES",ws:"ops",n:"Nghiên cứu khoa học",en:"Research Management",links:10,
+  d:"Quản lý đề tài các cấp, kinh phí, tiến độ, nghiệm thu và sản phẩm khoa học. Kết quả quy đổi thành giờ nghiên cứu trong HRM và lưu công bố trong thư viện.",
+  u:"Phòng KHCN, giảng viên và sinh viên nghiên cứu, hội đồng khoa học.",
+  f:[["Đăng ký và xét duyệt đề tài","Thuyết minh, hội đồng"],["Hợp đồng và kinh phí","Giải ngân theo giai đoạn"],["Theo dõi tiến độ","Báo cáo, gia hạn"],["Nghiệm thu","Đánh giá, xếp loại"],["Công bố khoa học","ISI/Scopus, sách, sáng chế"],["Lý lịch khoa học","Tự cập nhật từ công bố"],["Quy đổi giờ nghiên cứu","Thành giờ chuẩn"]],
+  r:["HRM","FIN","WF","LIB","PUR","STU"]},
+
+ {c:"ADS",ws:"learn",n:"Tuyển sinh",en:"Admissions",links:8,
+  d:"Toàn bộ quy trình tuyển sinh, từ thí sinh tìm hiểu ngành, nộp hồ sơ, xét tuyển đến xác nhận nhập học. Cổng nộp hồ sơ là trang công khai.",
+  u:"Phòng Tuyển sinh, hội đồng tuyển sinh; thí sinh và phụ huynh (cổng công khai).",
+  f:[["Cổng nộp hồ sơ trực tuyến","Khai hồ sơ, tải minh chứng, theo dõi"],["Cấu hình đợt tuyển sinh","Ngành, chỉ tiêu, tổ hợp, phương thức"],["Xét tuyển đa phương thức","Điểm thi, học bạ, ĐGNL, ưu tiên"],["Tính điểm và xếp hạng","Mô phỏng điểm chuẩn"],["Tư vấn tuyển sinh","Thí sinh tiềm năng, chiến dịch"],["Công bố kết quả","Giấy báo trúng tuyển điện tử"],["Xác nhận nhập học","Đóng phí, sinh mã sinh viên"]],
+  r:["CUR","STU","ADM","FIN","WF","NTF","DOC"]},
+ {c:"STU",ws:"learn",n:"Sinh viên",en:"Student Information System",links:16,
+  d:"Hồ sơ gốc của sinh viên trong suốt quá trình học: lớp, cố vấn, tình trạng học vụ, tín chỉ, GPA; đồng thời là cổng tự phục vụ cho sinh viên.",
+  u:"Phòng Đào tạo, phòng Công tác sinh viên, cố vấn học tập, sinh viên.",
+  f:[["Hồ sơ sinh viên 360°","Lý lịch, giấy tờ, lịch sử học tập"],["Lớp sinh hoạt và cố vấn","Ban cán sự lớp"],["Tín chỉ và GPA","Tự cập nhật khi có điểm"],["Tình trạng học vụ","Đang học, bảo lưu, thôi học, tốt nghiệp"],["Cảnh báo học vụ","Báo sinh viên và cố vấn"],["Đơn từ trực tuyến","Bảo lưu, chuyển ngành, xác nhận"],["Cổng sinh viên","Lịch học, điểm, học phí, thông báo"]],
+  r:["ADM","ADS","CRS","EXM","DIP","FIN","SCH","COM","WF"]},
+ {c:"CUR",ws:"learn",n:"Chương trình đào tạo",en:"Curriculum Management",links:11,
+  d:"Quản lý khung chương trình, học phần, đề cương và chuẩn đầu ra — bản thiết kế mọi hoạt động đào tạo dựa vào. Mỗi khóa gắn với một phiên bản chương trình.",
+  u:"Phòng Đào tạo, khoa, bộ môn, hội đồng khoa học đào tạo, phòng Đảm bảo chất lượng.",
+  f:[["Khung chương trình","Khối kiến thức, bắt buộc và tự chọn"],["Học phần","Tiên quyết, song hành, tương đương"],["Đề cương chi tiết","Mục tiêu, đánh giá, tài liệu"],["Chuẩn đầu ra","Ma trận CLO – PLO"],["Phiên bản chương trình","So sánh khác biệt"],["Kế hoạch học tập mẫu","Lộ trình từng học kỳ"],["Phục vụ kiểm định","Xuất minh chứng theo bộ tiêu chuẩn"]],
+  r:["ADS","CRS","STU","DIP","HRM","LIB","WF"]},
+ {c:"CRS",ws:"learn",n:"Khóa học & Lớp học",en:"Course & LMS Core",links:12,
+  d:"Lõi LMS của HEOS: mở lớp, xếp thời khóa biểu, đăng ký học phần, lớp học trực tuyến với bài giảng, bài tập, thảo luận, điểm danh và theo dõi tiến độ.",
+  u:"Giảng viên, sinh viên, phòng Đào tạo; cán bộ học khóa nội bộ.",
+  f:[["Mở lớp học phần","Sĩ số, phân công giảng viên"],["Thời khóa biểu","Tránh trùng giảng viên, phòng, lớp"],["Đăng ký học phần","Kiểm tra tiên quyết, danh sách chờ"],["Bài giảng đa phương tiện","Video, slide, SCORM"],["Bài tập và chấm bài","Đạo văn, rubric, phản hồi"],["Tương tác lớp học","Diễn đàn, hỏi đáp, học qua video"],["Điểm danh","QR hoặc thủ công"],["Tiến độ học tập","Mức hoàn thành từng sinh viên"]],
+  r:["CUR","STU","HRM","FAC","FIN","EXM","LIB"]},
+ {c:"EXM",ws:"learn",n:"Thi & Đánh giá",en:"Examination & Grading",links:10,
+  d:"Khâu khảo thí: ngân hàng câu hỏi, tổ chức thi trực tuyến hoặc trên giấy, nhập điểm, phúc khảo và bảng điểm. Mọi thay đổi điểm đều qua phê duyệt và có nhật ký.",
+  u:"Phòng Khảo thí, giảng viên, cán bộ coi thi, sinh viên.",
+  f:[["Ngân hàng câu hỏi","Theo học phần, mức độ, chuẩn đầu ra"],["Tạo đề thi","Theo ma trận, trộn đề"],["Thi trực tuyến","Giám sát, chống gian lận"],["Lịch thi","Phòng thi, cán bộ coi thi"],["Nhập điểm","Công thức thành phần, khóa điểm"],["Phúc khảo và sửa điểm","Sửa điểm phải được duyệt"],["Bảng điểm và thống kê","Phổ điểm, tỷ lệ đạt"]],
+  r:["CRS","STU","FAC","WF","DIP","SCH","NTF"]},
+ {c:"DIP",ws:"learn",n:"Văn bằng & Chứng chỉ",en:"Diploma & Certificate",links:11,
+  d:"Khép lại vòng đời đào tạo: xét tốt nghiệp tự động, quản lý phôi và số hiệu, phát hành văn bằng số có mã QR để nhà tuyển dụng tra cứu.",
+  u:"Phòng Đào tạo, hội đồng xét tốt nghiệp, sinh viên, nhà tuyển dụng (tra cứu).",
+  f:[["Xét tốt nghiệp tự động","Đối chiếu tín chỉ, GPA, chứng chỉ, công nợ"],["Quyết định công nhận","Trình duyệt, ban hành"],["Quản lý phôi và sổ gốc","Số hiệu văn bằng"],["Chứng chỉ","Khóa ngắn hạn và nội bộ"],["Văn bằng số","Mã QR và chữ ký số"],["Tra cứu công khai","Xác thực cho bên ngoài"],["Cấp bản sao và chỉnh sửa","Có lưu vết"]],
+  r:["STU","CUR","EXM","FIN","WF","ALM","HRM"]},
+
+ {c:"LIB",ws:"life",n:"Thư viện",en:"Library Management",links:11,
+  d:"Thư viện truyền thống và thư viện số: mượn trả sách in, tài liệu số (ebook, luận văn, bài báo), và kết nối học liệu với từng học phần.",
+  u:"Thư viện, sinh viên, giảng viên, nhà nghiên cứu.",
+  f:[["Biên mục và kho sách","MARC21, từng bản sách"],["Mượn trả","Gia hạn, đặt trước bằng thẻ hoặc QR"],["Thư viện số","Đọc trực tuyến có phân quyền"],["Tra cứu OPAC","Tìm toàn văn"],["Phạt quá hạn","Khóa thẻ khi quá hạn"],["Học liệu theo học phần","Tài liệu tham khảo từng học phần"],["Thống kê","Lượt mượn, nhu cầu bổ sung"]],
+  r:["STU","HRM","CUR","CRS","RES","PUR","FIN"]},
+ {c:"SCH",ws:"life",n:"Học bổng & Hỗ trợ tài chính",en:"Scholarships & Financial Aid",links:10,
+  d:"Học bổng khuyến khích, học bổng tài trợ, miễn giảm học phí và hỗ trợ sinh viên khó khăn. Xét chọn dựa trên dữ liệu học tập và rèn luyện có sẵn.",
+  u:"Phòng Công tác sinh viên, hội đồng xét học bổng, nhà tài trợ, sinh viên.",
+  f:[["Quỹ và nhà tài trợ","Số dư quỹ"],["Tiêu chí xét","GPA, rèn luyện, hoàn cảnh"],["Nộp hồ sơ trực tuyến","Trên cổng sinh viên"],["Xét chọn","Lọc tự động; hội đồng duyệt"],["Miễn giảm học phí","Theo đối tượng chính sách"],["Chi trả","Chuyển khoản hoặc cấn trừ học phí"],["Báo cáo nhà tài trợ","Sử dụng quỹ, kết quả sinh viên"]],
+  r:["STU","EXM","COM","FIN","WF","ALM","NTF"]},
+ {c:"COM",ws:"life",n:"Cộng đồng",en:"Community & Engagement",links:8,
+  d:"Không gian kết nối cộng đồng: tin tức, câu lạc bộ, sự kiện, ngoại khóa, khảo sát và hỗ trợ sinh viên. Ghi nhận điểm rèn luyện vào hồ sơ và xét học bổng.",
+  u:"Sinh viên, Đoàn – Hội, câu lạc bộ, phòng Công tác sinh viên, giảng viên.",
+  f:[["Bảng tin","Trường, khoa, câu lạc bộ"],["Câu lạc bộ","Thành viên và hoạt động"],["Sự kiện","Đăng ký, check-in QR"],["Điểm rèn luyện","Tự đánh giá và duyệt"],["Khảo sát","Ý kiến về học phần, giảng viên"],["Hỗ trợ sinh viên","Helpdesk"],["Nhắn tin và nhóm","Theo lớp, câu lạc bộ"]],
+  r:["STU","SCH","FAC","ALM","BI","NTF"]},
+ {c:"ALM",ws:"life",n:"Cựu sinh viên",en:"Alumni Relations",links:9,
+  d:"Giữ kết nối lâu dài với cựu sinh viên: theo dõi việc làm sau tốt nghiệp (bắt buộc cho kiểm định), mạng lưới mentor, cổng việc làm và gây quỹ.",
+  u:"Phòng Quan hệ doanh nghiệp – Cựu sinh viên, cựu sinh viên, doanh nghiệp đối tác.",
+  f:[["Hồ sơ cựu sinh viên","Kế thừa hồ sơ sinh viên"],["Khảo sát việc làm","Theo yêu cầu kiểm định"],["Mạng lưới cố vấn","Mentor cho sinh viên"],["Cổng việc làm","Tuyển dụng, thực tập"],["Sự kiện cựu sinh viên","Họp lớp, ngày hội"],["Gây quỹ","Ghi nhận đóng góp"],["Thống kê việc làm","Theo ngành, khóa"]],
+  r:["DIP","STU","ADM","SCH","FIN","COM","BI"]}
+];
+const byCode = Object.fromEntries(M.map(m=>[m.c,m]));
+const USERS = [
+ ["Sinh viên","Đăng ký học phần, học và nộp bài, xem điểm, đóng học phí, mượn sách, xin học bổng","learn life"],
+ ["Giảng viên","Dạy lớp, chấm bài, nhập điểm, theo dõi giờ giảng và nghiên cứu, đăng ký đề tài","learn ops"],
+ ["Cán bộ phòng ban","Nghiệp vụ chuyên môn của phòng và xử lý việc cần duyệt","ops learn life"],
+ ["Lãnh đạo","Phê duyệt, xem dashboard BI, theo dõi công việc đơn vị","ops plat"],
+ ["Quản trị hệ thống","Tài khoản, phân quyền, danh mục, luồng duyệt, nhật ký kiểm toán","plat"],
+ ["Cựu sinh viên","Cập nhật việc làm, làm mentor, tham gia sự kiện, đóng góp quỹ","life"],
+ ["Thí sinh và phụ huynh","Nộp hồ sơ, theo dõi kết quả, xác nhận nhập học — qua cổng công khai ADS","learn"],
+ ["Đối tác bên ngoài","Đăng tin tuyển dụng, theo dõi quỹ tài trợ, tra cứu văn bằng — qua cổng công khai","learn life"]
+];
+const PR = [
+ ["Một User gốc cho mỗi người","User chỉ tạo trong ADM; STU, HRM, ALM là phần mở rộng."],
+ ["Đăng nhập một lần, phân quyền tập trung","JWT qua ADM (SSO, OIDC); RBAC theo vai trò và đơn vị."],
+ ["Vai trò quyết định điều người dùng thấy","Workspace trên Launcher do vai trò được cấp."],
+ ["Workspace là lớp điều hướng","Chuyển Workspace không đổi service, repo hay schema."],
+ ["Module dùng chung xuyên Workspace","WF, NTF, TSK ở thanh trên cùng mọi Workspace."],
+ ["Điểm bắt đầu nghiệp vụ quyết định Workspace","ADS nằm trong UniLearn; cổng thí sinh tách riêng."],
+ ["Mỗi Module là một bounded context","Một service, một repo, một schema PostgreSQL."],
+ ["Không truy cập CSDL của Module khác","REST qua Gateway hoặc event qua RabbitMQ."],
+ ["Không tạo Module trùng khái niệm","Mỗi khái niệm nghiệp vụ có đúng một nơi sở hữu."],
+ ["Mọi nghiệp vụ cần duyệt đi qua WF","Nghiệp vụ chỉ có hiệu lực khi WF trả kết quả."],
+ ["Thông báo, tệp, việc đi qua dịch vụ chung","NTF gửi, DOC lưu tệp, TSK giữ danh sách việc."],
+ ["Báo cáo đọc từ sự kiện","BI cập nhật kho dữ liệu riêng qua event (CQRS)."],
+ ["Mọi thay đổi quan trọng đều có vết","ADM ghi nhật ký kiểm toán ở mọi Module."],
+ ["Một design system, nhiều micro-frontend","24 micro-frontend Next.js dùng chung gói UI."]
+];
+const ROAD = [
+ ["GĐ 1","Nền tảng",["ADM","WF","NTF","DOC","TSK"],"Định danh, luồng duyệt, thông báo, design system"],
+ ["GĐ 2","Học vụ lõi",["CUR","STU","CRS","EXM"],"Vận hành đào tạo và LMS cho học kỳ thí điểm"],
+ ["GĐ 3","Tài chính và vận hành",["FIN","HRM","PUR"],"Học phí, lương, mua sắm"],
+ ["GĐ 4","Mở rộng học vụ và đời sống",["ADS","DIP","SCH","LIB"],"Tuyển sinh, tốt nghiệp, học bổng, thư viện"],
+ ["GĐ 5","Tài sản, dự án, cộng đồng",["FXA","INV","FAC","PRJ","RES","COM","ALM"],"Hoàn thiện toàn bộ nghiệp vụ"],
+ ["GĐ 6","Phân tích",["BI"],"Dashboard toàn trường khi schema đã ổn định"]
+];
+
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"]/g, ch => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[ch]));
+const cvar = ws => `--c:var(--${ws});--soft:var(--${ws}-soft)`;
+
+// Hero strip
+$("#wsStrip").innerHTML = Object.entries(WS).map(([k,w]) => {
+  const codes = M.filter(m=>m.ws===k).map(m=>m.c);
+  return `<a class="ws-chip" style="${cvar(k)}" href="#modules" data-ws="${k}"><div class="n">${codes.length}</div><div class="t">${w.name} · <span style="font-weight:500;color:var(--hero-muted)">${w.sub}</span></div><div class="s">${codes.join(" · ")}</div></a>`;
+}).join("");
+document.querySelectorAll(".ws-chip").forEach(a => a.addEventListener("click", () => setFilter(a.dataset.ws)));
+
+// Tabs
+let filter = ALL;
+$("#tabs").innerHTML = `<button class="tab" data-ws="${ALL}" aria-pressed="true">Tất cả <small>24</small></button>` +
+  Object.entries(WS).map(([k,w]) => `<button class="tab" style="${cvar(k)}" data-ws="${k}" aria-pressed="false"><span class="dot"></span>${w.name}</button>`).join("");
+$("#tabs").addEventListener("click", e => { const b = e.target.closest(".tab"); if (b) setFilter(b.dataset.ws); });
+function setFilter(ws){
+  filter = ws;
+  document.querySelectorAll(".tab").forEach(t => t.setAttribute("aria-pressed", t.dataset.ws === ws));
+  render();
+}
+
+function card(m){
+  return `<button class="card" style="${cvar(m.ws)}" data-code="${m.c}">
+    <div class="card-top"><div class="badge">${m.c}</div><div><h5>${esc(m.n)}</h5><div class="en">${esc(m.en)}</div></div></div>
+    <p>${esc(m.d)}</p>
+    <div class="tags">${m.f.slice(0,3).map(f=>`<span class="tag">${esc(f[0])}</span>`).join("")}${m.f.length>3?`<span class="tag">+${m.f.length-3}</span>`:""}</div>
+    <div class="card-foot"><span><b>${m.links}</b> Module liên kết</span><span>Xem chi tiết →</span></div>
+  </button>`;
+}
+
+function render(){
+  const q = $("#q").value.trim().toLowerCase();
+  const match = m => !q || [m.c,m.n,m.en,m.d,m.u,...m.f.flat()].join(" ").toLowerCase().includes(q);
+  let total = 0;
+  $("#groups").innerHTML = Object.entries(WS).map(([k,w]) => {
+    if (filter !== ALL && filter !== k) return "";
+    const list = M.filter(m => m.ws===k && match(m));
+    total += list.length;
+    if (!list.length) return "";
+    return `<div class="ws-group" style="${cvar(k)}">
+      <div class="ws-title"><span class="pill">${w.name}</span><h4>${w.sub}</h4><span>${esc(w.desc)}</span><code>${w.path}</code></div>
+      <div class="grid">${list.map(card).join("")}</div></div>`;
+  }).join("") || "";
+  if (!total) $("#groups").innerHTML = `<div class="empty">Không tìm thấy Module phù hợp với “${esc(q)}”.</div>`;
+}
+$("#q").addEventListener("input", render);
+$("#groups").addEventListener("click", e => { const c = e.target.closest(".card"); if (c) openModal(c.dataset.code); });
+
+// Modal
+const dlg = $("#modal");
+function openModal(code){
+  const m = byCode[code]; const w = WS[m.ws];
+  dlg.setAttribute("style", cvar(m.ws));
+  $("#mBadge").textContent = m.c;
+  $("#mTitle").textContent = `${m.c} – ${m.n}`;
+  $("#mMeta").innerHTML = `${esc(m.en)} · ${w.name} · <code>heos-${m.c.toLowerCase()}-service</code>`;
+  const rel = m.r === "*" ? M.filter(x=>x.c!==m.c).map(x=>x.c) : m.r;
+  $("#mBody").innerHTML = `
+    <p class="desc">${esc(m.d)}</p>
+    <div class="m-users"><b>User chính:</b> ${esc(m.u)}</div>
+    <h4>Tính năng của Module</h4>
+    <ul class="feat">${m.f.map(f=>`<li><b>${esc(f[0])}</b><span>${esc(f[1])}</span></li>`).join("")}</ul>
+    <h4>Liên kết với Module khác ${m.r==="*"?"· tất cả Module":""}</h4>
+    <div class="rel">${rel.map(c=>{const x=byCode[c];return `<button style="${cvar(x.ws)}" data-code="${c}"><i></i>${c} · ${esc(x.n)}</button>`}).join("")}</div>`;
+  if (!dlg.open) dlg.showModal();
+  $("#mBody").scrollTop = 0;
+}
+$("#mBody").addEventListener("click", e => { const b = e.target.closest(".rel button"); if (b) openModal(b.dataset.code); });
+$("#mClose").addEventListener("click", () => dlg.close());
+dlg.addEventListener("click", e => { if (e.target === dlg) dlg.close(); });
+
+// Users
+$("#usersGrid").innerHTML = USERS.map(([n,d,ws]) => `<div class="user"><h6>${n}</h6><p>${d}</p><div class="ws">${ws.split(" ").map(k=>`<span style="${cvar(k)}">${WS[k].name}</span>`).join("")}</div></div>`).join("");
+// Principles
+$("#prGrid").innerHTML = PR.map(([t,d],i) => `<div class="pr"><div class="num">${String(i+1).padStart(2,"0")}</div><div><h6>${t}</h6><p>${d}</p></div></div>`).join("");
+// Roadmap
+$("#road").innerHTML = ROAD.map(([k,t,mods,d]) => `<div class="phase"><div class="k">${k}</div><h6>${t}</h6><div class="mods">${mods.map(c=>`<button style="${cvar(byCode[c].ws)}" data-code="${c}">${c}</button>`).join("")}</div><p>${d}</p></div>`).join("");
+$("#road").addEventListener("click", e => { const b = e.target.closest("button[data-code]"); if (b) openModal(b.dataset.code); });
+
+// Theme
+const root = document.documentElement;
+try { const t = localStorage.getItem("heos-theme"); if (t) root.dataset.theme = t; } catch(e){}
+$("#themeBtn").addEventListener("click", () => {
+  const dark = root.dataset.theme ? root.dataset.theme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+  root.dataset.theme = dark ? "light" : "dark";
+  try { localStorage.setItem("heos-theme", root.dataset.theme); } catch(e){}
+});
+
+render();
+</script>
+</body>
+</html>
